@@ -1,0 +1,10 @@
+How to build (requires gcc)
+
+make
+
+Building for arm-linux (requires arm-linux-gcc toolchain)
+
+make TARGET=arm-linux
+
+Binaries will be in src/$(uname -m)/bin
+
