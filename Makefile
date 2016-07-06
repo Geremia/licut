@@ -13,14 +13,14 @@ PACKAGE:=${OUTPUT}/licut-${TARGET}.tgz
 SOURCES:=$(wildcard *.cpp)
 BINDIR:=${TARGET}/bin
 OBJDIR:=${TARGET}/obj
-LIBDIR:=${TARGET}/lib
+LIBDIR:=
 OBJS:=$(patsubst %.cpp,${OBJDIR}/%.o,${SOURCES})
-GFLAGS_LIB:=libgflags_nothreads.a
+GFLAGS_LIB:=/usr/local/lib/libgflags_nothreads.a
 LIBS:=${GFLAGS_LIB}
 LIB_PATHS:=$(addprefix ${LIBDIR}/,${LIBS})
 #LDFLAGS += -L${LIBDIR} $(addprefix -l,$(patsubst lib%,%,${LIBS}))
 LDFLAGS += ${LIB_PATHS}
-CFLAGS += -Igoogle-gflags/src
+CFLAGS +=
 
 
 LICUT:=${TARGET}/bin/licut
@@ -49,14 +49,14 @@ ${OBJDIR}/%.o: %.cpp
 	@mkdir -p $(dir $@)
 	${TGT}${CXX} ${CFLAGS} ${CPPFLAGS} -c -o $@ $<
 
-ifneq (${SKIP_LIB},1)
-${LIBDIR}/${GFLAGS_LIB}: google-gflags/.libs/${GFLAGS_LIB}
-	cp -p -P google-gflags/.libs/*.so* google-gflags/.libs/*.a ${LIBDIR}/
-	@touch $@
-endif
+#ifneq (${SKIP_LIB},1)
+#${LIBDIR}/${GFLAGS_LIB}: google-gflags/.libs/${GFLAGS_LIB}
+#	cp -p -P google-gflags/.libs/*.so* google-gflags/.libs/*.a ${LIBDIR}/
+#	@touch $@
+#endif
 
-google-gflags/.libs/${GFLAGS_LIB}: config-google-gflags-${TARGET} ${LIBDIR}
-	make -C google-gflags
+#google-gflags/.libs/${GFLAGS_LIB}: config-google-gflags-${TARGET} ${LIBDIR}
+#	make -C google-gflags
 
-include google-gflags.mak
+#include google-gflags.mak
 

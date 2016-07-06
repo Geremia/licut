@@ -37,8 +37,8 @@ int LicutProbe::Open( int verbose /*= 0*/ )
 	if (verbose) printf( "Opened lsusb -v\n" );
 	while (fgets( buff, sizeof(buff), lsusb ) && !found_devname)
 	{
-		// Pared down search from "ID 0403:6001 Future Technology Devices International"
-		if (!in_ftdi && !found_ftdi && strstr( buff, "ID 0403:6001" ))
+		// Pared down search from "ID 20d3:0011 Future Technology Devices International"
+		if (!in_ftdi && !found_ftdi && strstr( buff, "ID 20d3:0011" ))
 		{
 			in_ftdi = true;
 			found_ftdi = true;

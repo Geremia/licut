@@ -23,7 +23,7 @@ update-google-gflags:
 	@if test $$(cat .google-gflags-newrev) -gt $$(cat .google-gflags-oldrev); then echo "Update detected; forcing reconfigure on next build"; rm -f config-google-gflags-*; else echo "No change in svn revision"; fi
 
 config-google-gflags-${TARGET}:
-	@test -d google-gflags || { echo "google-gflags not found; use checkout-google-gflags for initial checkout"; exit 1; }
+
 	-rm -f config-google-gflags-*
 	-${MAKE} -C google-gflags clean
 ifeq (${TARGET},${HOST_TARGET})
