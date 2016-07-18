@@ -15,12 +15,12 @@ BINDIR:=${TARGET}/bin
 OBJDIR:=${TARGET}/obj
 LIBDIR:=
 OBJS:=$(patsubst %.cpp,${OBJDIR}/%.o,${SOURCES})
-GFLAGS_LIB:=/usr/local/lib/libgflags_nothreads.a
+#GFLAGS_LIB:=/usr/local/lib/libgflags_nothreads.a
 LIBS:=${GFLAGS_LIB}
 LIB_PATHS:=$(addprefix ${LIBDIR}/,${LIBS})
 #LDFLAGS += -L${LIBDIR} $(addprefix -l,$(patsubst lib%,%,${LIBS}))
-LDFLAGS += ${LIB_PATHS}
-CFLAGS +=
+LDFLAGS += -lgflags ${LIB_PATHS}
+CFLAGS += -lgflags
 
 
 LICUT:=${TARGET}/bin/licut

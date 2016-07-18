@@ -70,7 +70,7 @@ int LicutProbe::Open( int verbose /*= 0*/ )
 					{
 						if (d->d_name[0] == '.') continue;
 						if (verbose) printf( "%s/%s\n", class_dirname, d->d_name );
-						if (!strncmp( d->d_name, "ttyUSB", 6 ))
+                        if (!strncmp( d->d_name, "ttyACM1", 6 ))
 						{
 							found_devname = true;
 							endpoint = test_ep;
@@ -94,8 +94,8 @@ int LicutProbe::Open( int verbose /*= 0*/ )
 	{
 		if (found_ftdi)
 		{
-			printf( "Found FTDI USB serial port but no endpoint - assuming /dev/ttyUSB0\n" );
-			sprintf( devpath, "/dev/ttyUSB0" );
+            printf( "Found FTDI USB serial port but no endpoint - assuming /dev/ttyACM1\n" );
+            sprintf( devpath, "/dev/ttyACM1" );
 		}
 		else
 		{
